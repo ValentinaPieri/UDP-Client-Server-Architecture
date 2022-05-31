@@ -24,9 +24,31 @@ def ClientGet(message,sock):
         sys.exit()
         
     print('received message "%s"' % data.decode('utf8'))
-    if len(data.decode('utf8')) < 30:
 
+def ServerGet(filename,sock):
+    filename, addr = sock.recvfrom(sizeBuffer)
+    filename = filename.decode()
+    f = open(filename,'w')
+
+    data, addr = sock.recvfrom(sizeBuffer)
+    f.write(data.decode())
+
+    print("Received a file from "+str(addr)+": "+filename)
+    f.close()
+
+    reply = 'File has been received!'
+    sock.sendto(reply.encode(), addr)
 
 def ListClient(sock):
     data = sock.recvfrom(sizeBuffer)
     print(data(sock).decode())
+
+def ListServer(sock):
+    
+    Lists = []
+    for file in F:
+        Lists.append(file)
+    ListsStr = str(Lists)
+    ListsEn = ListsStr.encode('utf-8')
+    sock.sendto(ListsEn, clientAddr)
+    print("List sent from Server")
