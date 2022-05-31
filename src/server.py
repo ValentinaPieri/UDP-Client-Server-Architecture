@@ -13,15 +13,16 @@ except sock.error:
     sys.exit(1)
 
 while True:
-    print('\n\r waiting to receive message..')
-    data, address = sock.recvfrom(4096)
 
-    print('received %s bytes from %s' % (len(data), address))
+    print('\n\r waiting to receive message..')
+    data, client_address = sock.recvfrom(4096)
+
+    print('received %s bytes from %s' % (len(data), client_address))
     print(data.decode('utf8'))
 
     if data:
         data1='Programmazione di Reti'
         time.sleep(2)
-        sent = sock.sendto(data1.encode(), address)
-        print('sent %s bytes back to %s' % (sent,address))
+        sent = sock.sendto(data1.encode(), client_address)
+        print('sent %s bytes back to %s' % (sent,client_address))
  
