@@ -1,3 +1,4 @@
+from distutils import filelist
 import os
 import sys
 
@@ -43,12 +44,13 @@ def ListClient(sock):
     data = sock.recvfrom(sizeBuffer)
     print(data(sock).decode())
 
-def ListServer(sock):
-    
-    Lists = []
+def ListServer(sock,client_address):
+    path = os.getcwd()
+    F = os.listdir(path)
+    filelist = []
     for file in F:
-        Lists.append(file)
-    ListsStr = str(Lists)
-    ListsEn = ListsStr.encode('utf-8')
-    sock.sendto(ListsEn, clientAddr)
+        filelist.append(file)
+    filelistStr = str(filelist)
+    filelistEn = filelistStr.encode('utf-8')
+    sock.sendto(filelistEn, client_address)
     print("List sent from Server")
