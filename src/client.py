@@ -10,7 +10,7 @@ try:
     server_address = ('localhost', 10000)
 except sock.error:
     print("Failed to create socket.")
-    sys.exit(1)
+    sys.exit()
 
 # MessClient = message.encode('utf-8')
 #     try:
@@ -20,16 +20,18 @@ except sock.error:
 #             "Error. Port numbers are not matching. Exiting. Next time please enter same port numbers.")
 #         sys.exit()
 while True:
-    fileName=input("File name: ")
-    text=input("\nWhat do you want to do with %s? \n- get 'file_name' \n-put 'file_name' \n-list \n: " % fileName)
+    text=input("\nWhat do you want to do? \n- get 'file_name' \n-put 'file_name' \n-list \n: ")
 
     try:
-        if text == "get":
-            ClientLibrary.ClientGet(sock, fileName)
-        elif text == "put":
-            ClientLibrary.ClientPut(fileName, sock, server_address)
-        elif text == "list":
+        if text.split([0]) == "get":
+            ClientLibrary.ClientGet(sock, text.split([1]))
+        elif text.split([0]) == "put":
+            ClientLibrary.ClientPut(text.split([1]), sock, server_address)
+        elif text.split([0]) == "list":
             ClientLibrary.ListClient(sock)
+        elif text.split([0]) == "exit":
+            sock.close()
+            sys.exit()
     finally:
         print('closing socket')
         sock.close()
