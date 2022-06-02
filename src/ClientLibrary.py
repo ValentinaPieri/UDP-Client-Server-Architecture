@@ -10,7 +10,7 @@ def client_send(message, server_address, sock):
 def client_get(message,sock):
     print('waiting to receive..')
     try:
-        data, server = sock.recvfrom(sizeBuffer)
+        data = sock.recvfrom(sizeBuffer)[0]
         if "Error" in data(sock).decode():
             print("File doesn't exist")
             return
