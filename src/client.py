@@ -1,6 +1,4 @@
-from fileinput import filename
 import socket as sk
-import time
 import sys
 import ClientLibrary
 
