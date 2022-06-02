@@ -3,7 +3,7 @@ import sys
 
 sizeBuffer = 4096
 
-def ServerGet(filename,sock):
+def get_server(filename,sock):
     filename, addr = sock.recvfrom(sizeBuffer)
     filename = filename.decode()
     f = open(filename,'w')
@@ -17,7 +17,7 @@ def ServerGet(filename,sock):
     reply = 'File has been received!'
     sock.sendto(reply.encode(), addr)
 
-def ListServer(sock,client_address):
+def list_server(sock,client_address):
     path = os.getcwd()
     F = os.listdir(path)
     filelist = []
@@ -26,4 +26,4 @@ def ListServer(sock,client_address):
     filelistStr = str(filelist)
     filelistEn = filelistStr.encode('utf-8')
     sock.sendto(filelistEn, client_address)
-    print("List sent from Server")
+    print("Successfully sent list from Server")
