@@ -16,7 +16,7 @@ def get_client(command,sock,server_address):
         print("Successfully received file from Server")
         f.close()
     else:
-        print("File not found")
+        print("File not Found")
 
 def put_client(command, sock, server_address):
     filename = command.split(' ')[1]
@@ -30,6 +30,7 @@ def put_client(command, sock, server_address):
                 break
             sock.sendto(data, server_address)
         f.close()
+        print("Successfully sent file from Client")
     else:
         print("File not Found")
 
