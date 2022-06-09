@@ -14,6 +14,7 @@ def get_server(command, sock, client_address):
                 break
             sock.sendto(data, client_address)
         f.close()
+        print("Successfully sent file from Server")
     else:
         sock.sendto("error".encode(), client_address)
 
