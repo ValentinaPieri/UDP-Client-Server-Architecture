@@ -11,7 +11,7 @@ except sock.error:
     exit(1)
 
 while True:
-    text=input("\nWhat do you want to do? \n- get 'file_name' \n- put 'file_name' \n- list \n: ")
+    text=input("\nWhat do you want to do? \n- get file_name \n- put file_name \n- list \n: ")
     
     print("")
 
